@@ -17,3 +17,8 @@ Feature: Login with parameters
     And I enter password 'VNKw282v'
     And click the sign in button
     Then books should be displayed
+
+  Scenario: Login as librarian same line
+    Given I am on the login page
+    When I login using "librarian43@library"and "np6AxVIh"
+    Then dashboard should be displayed
