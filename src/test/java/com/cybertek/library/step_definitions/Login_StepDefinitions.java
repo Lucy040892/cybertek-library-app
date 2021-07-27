@@ -2,6 +2,7 @@ package com.cybertek.library.step_definitions;
 
 import com.cybertek.library.pages.LandingPage;
 import com.cybertek.library.pages.LoginPage;
+import com.cybertek.library.utilities.BrowserUtils;
 import com.cybertek.library.utilities.ConfigurationReader;
 import com.cybertek.library.utilities.Driver;
 import io.cucumber.java.en.Given;
@@ -108,5 +109,15 @@ public class Login_StepDefinitions {
         loginPage.usernameInput.sendKeys(username);
         loginPage.passwordInput.sendKeys(password);
         loginPage.signInButton.click();
+    }
+
+    @Then("account holder name should be {string}")
+    public void accountHolderNameShouldBe(String expectedAccountUsername) {
+        BrowserUtils.waitForVisibility(landingPage.accountUsername, 5);
+        String actualAccountUsername = landingPage.accountUsername.getText();
+
+        Assert.assertEquals("Account username is not as expected!",
+                expectedAccountUsername, actualAccountUsername);
+        Driver.closeDriver();
     }
 }
